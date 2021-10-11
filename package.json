@@ -1,0 +1,25 @@
+{
+  "name": "notion-api-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephangriesel/notion-js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stephangriesel/notion-js/issues"
+  },
+  "homepage": "https://github.com/stephangriesel/notion-js#readme",
+  "dependencies": {
+    "@notionhq/client": "^0.4.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  }
+}
