@@ -1,34 +1,22 @@
-const dotenv = require("dotenv").config()
-const {Client} = require("@notionhq/client")
+const express = require('express')
+const getVideos = require('./services/notion')
+const PORT = process.env.PORT || 5000
 
-//init client
-const notion = new Client({
-    auth:process.env.NOTION_TOKEN
+// Test Data
+// ;(async () => {
+//     const nVideos = await getVideos()
+//     console.log(nVideos)
+// })()
+
+const app = express()
+
+// Front end goes here:
+app.use(express.static('public'))
+
+app.get('/videos', async(req,res) => {
+    const videos = await getVideos()
+    res.json(videos)
 })
 
-// const listDatabases = async () => {
-//     const res = await notion.databases.list()
-//     console.log("list database response:", res)
-// }
-// listDatabases()
+app.listen(PORT, console.log(`Server started on port ${PORT}`));
 
-const database_id = process.env.NOTION_DATABASE_ID
-
-const getVideos = async () => {
-
-    const payload = {
-        path: `databases/${database_id}/query`,
-        method: 'POST'
-    }
-
-    const {results} = await notion.request(payload)
-    console.log("get results", results)
-
-    const videos = results.map(page => {
-        console.log("get pages:", page.properties.Description.rich_text[0].text.content)
-    })
-
-
-}
-
-getVideos()
